@@ -57,6 +57,7 @@ To enable Better Auth in LobeHub, set the following environment variables:
 | Generic OIDC          | `generic-oidc`          | `AUTH_GENERIC_OIDC_ID`, `AUTH_GENERIC_OIDC_SECRET`, `AUTH_GENERIC_OIDC_ISSUER`                                     |
 | Feishu                | `feishu`                | `AUTH_FEISHU_APP_ID`, `AUTH_FEISHU_APP_SECRET`                                                                     |
 | WeChat                | `wechat`                | `AUTH_WECHAT_ID`, `AUTH_WECHAT_SECRET`                                                                             |
+| WeChat Official Account | `wechat-mp`          | `AUTH_WECHAT_MP_APP_ID`, `AUTH_WECHAT_MP_SECRET`                                                                   |
 
 Click on a provider below for detailed configuration guides:
 
@@ -96,6 +97,7 @@ Click on a provider below for detailed configuration guides:
   <Card href={'/docs/self-hosting/auth/providers/feishu'} title={'Feishu'} />
 
   <Card href={'/docs/self-hosting/auth/providers/wechat'} title={'WeChat'} />
+  <Card href={'/docs/self-hosting/auth/providers/wechat-mp'} title={'WeChat Official Account'} />
 </Cards>
 
 ## Callback URL Format
@@ -192,7 +194,7 @@ By default, Better Auth uses the database to store session data. You can configu
 
 ### What SSO providers does Better Auth support?
 
-Better Auth supports built-in providers (Google, GitHub, Microsoft, Apple, AWS Cognito) and Generic OIDC providers (Auth0, Authelia, Authentik, Casdoor, Cloudflare Zero Trust, Keycloak, Logto, Okta, ZITADEL, Generic OIDC, Feishu, WeChat).
+Better Auth supports built-in providers (Google, GitHub, Microsoft, Apple, AWS Cognito) and Generic OIDC providers (Auth0, Authelia, Authentik, Casdoor, Cloudflare Zero Trust, Keycloak, Logto, Okta, ZITADEL, Generic OIDC, Feishu, WeChat, WeChat Official Account).
 
 ### How do I enable multiple SSO providers?
 

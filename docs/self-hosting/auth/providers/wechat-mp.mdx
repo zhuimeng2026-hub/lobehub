@@ -1,0 +1,99 @@
+---
+title: Configuring WeChat Official Account Authentication for LobeHub
+description: >-
+  Learn how to configure WeChat Official Account SSO for LobeHub, including
+  creating an Official Account and setting up OAuth.
+tags:
+  - WeChat Official Account
+  - WeChat MP
+  - Authentication
+  - LobeHub
+  - Single Sign-On
+---
+
+# Configuring WeChat Official Account Authentication
+
+[WeChat Official Account](https://mp.weixin.qq.com/) (公众号) supports OAuth 2.0 web authorization, allowing third-party websites to implement WeChat login. Unlike WeChat Open Platform, an Official Account does not require a website application review — a verified Official Account is sufficient.
+
+<Callout type={'warning'}>
+  WeChat Official Account OAuth requires a **verified Official Account** (认证服务号).
+  Unverified subscription accounts (订阅号) do not have access to the OAuth API.
+</Callout>
+
+<Steps>
+  ### Obtain Official Account Credentials
+
+  1. Go to [WeChat Official Account Platform](https://mp.weixin.qq.com/)
+  2. Register or log in with your verified Official Account
+  3. Go to **Settings & Development** > **Basic Configuration**
+  4. Note down the **AppID** and **AppSecret**
+
+  ### Configure OAuth Callback Domain
+
+  1. In **Basic Configuration**, find **OAuth Settings** (网页授权域名)
+  2. Click **Set** and enter your callback domain (without protocol or path):
+
+  <Callout type={'info'}>
+    Callback domain format:
+
+    - **Callback Domain**: `your-domain.com` (without protocol or path)
+    - **Full Callback URL**: `https://your-domain.com/api/auth/callback/wechat-mp`
+  </Callout>
+
+  3. Download the verification file and place it at your domain root, or configure it via your reverse proxy
+
+  ### Configure Environment Variables
+
+  | Environment Variable       | Type     | Description                                                  |
+  | -------------------------- | -------- | ------------------------------------------------------------ |
+  | `AUTH_SECRET`              | Required | Session encryption key, generate with `openssl rand -base64 32` |
+  | `AUTH_SSO_PROVIDERS`       | Required | Set to `wechat-mp`                                           |
+  | `AUTH_WECHAT_MP_APP_ID`    | Required | AppID of the WeChat Official Account                         |
+  | `AUTH_WECHAT_MP_SECRET`    | Required | AppSecret of the WeChat Official Account                     |
+
+  <Callout type={'tip'}>
+    Go to [📘 Environment Variables](/docs/self-hosting/environment-variables/auth#wechat-official-account)
+    for detailed information.
+  </Callout>
+</Steps>
+
+<Callout type={'info'}>
+  After successful deployment, users will be able to authenticate with WeChat
+  Official Account and use LobeHub.
+</Callout>
+
+## How It Works
+
+The login flow:
+
+1. User clicks "WeChat Official Account" on the LobeHub login page
+2. LobeHub redirects the user to `https://open.weixin.qq.com/connect/oauth2/authorize`
+3. The browser displays a QR code (encoded from the authorization URL)
+4. User scans the QR code with the WeChat mobile app
+5. WeChat opens the authorization page in its in-app browser
+6. User confirms authorization (pulls their WeChat profile info)
+7. WeChat redirects back to LobeHub with an authorization code
+8. LobeHub exchanges the code for an access token and retrieves user info
+
+## Notes
+
+- Requires a **verified Official Account** (认证服务号), not an Open Platform account
+- Uses `snsapi_userinfo` scope — pulls the user's nickname, avatar, and OpenID
+- Users must follow the Official Account to authorize (`snsapi_userinfo` requires follower status)
+- The callback domain must be filed with ICP in China if hosted domestically
+
+## Comparison with WeChat Open Platform
+
+|                     | Official Account (wechat-mp)          | Open Platform (wechat)                  |
+| ------------------- | ------------------------------------- | --------------------------------------- |
+| Account Type        | Verified Official Account (认证服务号)   | Verified Open Platform (开放平台)         |
+| Website Review      | Not required                          | Required                                |
+| Authorization URL   | `/connect/oauth2/authorize`           | `/connect/qrconnect`                    |
+| Scope               | `snsapi_userinfo`                     | `snsapi_login`                          |
+| Follower Required   | Yes (for `snsapi_userinfo`)           | No                                      |
+| Token / Userinfo API| Same                                  | Same                                    |
+
+## Related Resources
+
+- [WeChat Official Account Platform](https://mp.weixin.qq.com/)
+- [WeChat Web Authorization Documentation](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html)

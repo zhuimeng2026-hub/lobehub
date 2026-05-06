@@ -22,6 +22,7 @@ import Logto from './providers/logto';
 import Microsoft from './providers/microsoft';
 import Okta from './providers/okta';
 import Wechat from './providers/wechat';
+import WechatMp from './providers/wechat-mp';
 import Zitadel from './providers/zitadel';
 
 const providerDefinitions = [
@@ -42,6 +43,7 @@ const providerDefinitions = [
   Zitadel,
   Feishu,
   Wechat,
+  WechatMp,
 ] as const;
 
 const builtInProviderIds = new Set(BUILTIN_BETTER_AUTH_PROVIDERS);

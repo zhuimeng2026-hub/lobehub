@@ -79,6 +79,9 @@ declare global {
       AUTH_WECHAT_ID?: string;
       AUTH_WECHAT_SECRET?: string;
 
+      AUTH_WECHAT_MP_APP_ID?: string;
+      AUTH_WECHAT_MP_SECRET?: string;
+
       AUTH_ZITADEL_ID?: string;
       AUTH_ZITADEL_ISSUER?: string;
       AUTH_ZITADEL_SECRET?: string;
@@ -181,6 +184,9 @@ export const getAuthConfig = () => {
       AUTH_WECHAT_ID: z.string().optional(),
       AUTH_WECHAT_SECRET: z.string().optional(),
 
+      AUTH_WECHAT_MP_APP_ID: z.string().optional(),
+      AUTH_WECHAT_MP_SECRET: z.string().optional(),
+
       AUTH_ZITADEL_ID: z.string().optional(),
       AUTH_ZITADEL_SECRET: z.string().optional(),
       AUTH_ZITADEL_ISSUER: z.string().optional(),
@@ -273,6 +279,9 @@ export const getAuthConfig = () => {
 
       AUTH_WECHAT_ID: process.env.AUTH_WECHAT_ID,
       AUTH_WECHAT_SECRET: process.env.AUTH_WECHAT_SECRET,
+
+      AUTH_WECHAT_MP_APP_ID: process.env.AUTH_WECHAT_MP_APP_ID,
+      AUTH_WECHAT_MP_SECRET: process.env.AUTH_WECHAT_MP_SECRET,
 
       AUTH_ZITADEL_ID: process.env.AUTH_ZITADEL_ID,
       AUTH_ZITADEL_SECRET: process.env.AUTH_ZITADEL_SECRET,

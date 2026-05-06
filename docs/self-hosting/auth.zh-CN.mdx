@@ -55,6 +55,7 @@ LobeHub 支持使用 Better Auth 配置外部身份验证服务，供企业 / �
 | Generic OIDC          | `generic-oidc`          | `AUTH_GENERIC_OIDC_ID`, `AUTH_GENERIC_OIDC_SECRET`, `AUTH_GENERIC_OIDC_ISSUER`                                     |
 | 飞书                    | `feishu`                | `AUTH_FEISHU_APP_ID`, `AUTH_FEISHU_APP_SECRET`                                                                     |
 | 微信                    | `wechat`                | `AUTH_WECHAT_ID`, `AUTH_WECHAT_SECRET`                                                                             |
+| 微信服务号            | `wechat-mp`             | `AUTH_WECHAT_MP_APP_ID`, `AUTH_WECHAT_MP_SECRET`                                                                 |
 
 点击下方提供商查看详细配置指南：
 
@@ -94,6 +95,7 @@ LobeHub 支持使用 Better Auth 配置外部身份验证服务，供企业 / �
   <Card href={'/zh/docs/self-hosting/auth/providers/feishu'} title={'飞书'} />
 
   <Card href={'/zh/docs/self-hosting/auth/providers/wechat'} title={'微信'} />
+  <Card href={'/zh/docs/self-hosting/auth/providers/wechat-mp'} title={'微信服务号'} />
 </Cards>
 
 ## 回调 URL 格式
@@ -190,7 +192,7 @@ SMTP_FROM=noreply@yourdomain.com      # 可选，默认为 SMTP_USER
 
 ### Better Auth 支持哪些 SSO 提供商？
 
-Better Auth 支持内置提供商（Google、GitHub、Microsoft、Apple、AWS Cognito）和通用 OIDC 提供商（Auth0、Authelia、Authentik、Casdoor、Cloudflare Zero Trust、Keycloak、Logto、Okta、ZITADEL、Generic OIDC、飞书、微信）。
+Better Auth 支持内置提供商（Google、GitHub、Microsoft、Apple、AWS Cognito）和通用 OIDC 提供商（Auth0、Authelia、Authentik、Casdoor、Cloudflare Zero Trust、Keycloak、Logto、Okta、ZITADEL、Generic OIDC、飞书、微信、微信服务号）。
 
 ### 如何启用多个 SSO 提供商？
 
